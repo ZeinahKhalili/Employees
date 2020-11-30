@@ -34,8 +34,8 @@ export function getUser(email, password) {
     usersEmail.push(users[i].email);
     usersPassword.push(users[i].password);
   }
-  for (let i = 0; i < users.length; i++) {
-    if (email === usersEmail[i] && password === usersPassword[i]) {
+  for (let j = 0; j < users.length; j++) {
+    if (email === usersEmail[j] && password === usersPassword[j]) {
       return true;
     } else {
       return false;
