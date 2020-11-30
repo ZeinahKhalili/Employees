@@ -20,6 +20,7 @@ const initialFValues = {
   id: 0,
   fullName: "",
   email: "",
+  password: "",
   mobile: "",
   city: "",
 };
@@ -46,7 +47,7 @@ function Register(props) {
     e.preventDefault();
     if (validate()) {
       userService.insertUser(values);
-      return <Redirect to="/" />;
+      props.history.push("/");
     }
   };
 

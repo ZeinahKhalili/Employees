@@ -11,16 +11,18 @@ export function useForm(initialFValues, validateOnChange = false) {
       temp.fullName = fieldValues.fullName ? "" : "This Field is Required";
     }
     if ("email" in fieldValues) {
-      temp.email = /$^|.+@.+..+/.test(fieldValues.email)
-        ? ""
-        : "Email is not valid";
+      temp.email =
+        /$^|.+@.+..+/.test(fieldValues.email) && fieldValues.email
+          ? ""
+          : "Email is not valid";
     }
     if ("password" in fieldValues) {
-      temp.password = /$^|(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(
-        fieldValues.password
-      )
-        ? ""
-        : "Password is not valid";
+      temp.password =
+        /$^|(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(
+          fieldValues.password
+        ) && fieldValues.password
+          ? ""
+          : "Password is not valid";
     }
     if ("mobile" in fieldValues) {
       temp.mobile =

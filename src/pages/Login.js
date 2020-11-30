@@ -1,8 +1,9 @@
 import { Grid, makeStyles, Paper } from "@material-ui/core";
 import React from "react";
-import { Link, Redirect, Route } from "react-router-dom";
+import { Link, Redirect, Route, useHistory } from "react-router-dom";
 import Controls from "../components/Controls/Controls";
 import { Form, useForm } from "../components/useForm";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -34,8 +35,9 @@ function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (validate()) {
-      return <Redirect to="/employees" />;
+      props.history.push("/employees");
     }
   };
   return (
@@ -63,16 +65,14 @@ function Login(props) {
               </Grid>
 
               <Grid item md={6}>
-                <div className={classes.button}>
-                  <Controls.Button text="Log in" type="submit" />
-                  <br />
-                  <span className={classes.link}>
-                    Don't have an account?
-                  </span>{" "}
-                  <Link to="/signup" className={classes.link}>
-                    Sign up!
-                  </Link>
-                </div>
+                <Controls.Button text="Log in" type="submit" />
+                <br />
+                <span className={classes.link}>
+                  Don't have an account?
+                </span>{" "}
+                <Link to="/signup" className={classes.link}>
+                  Sign up!
+                </Link>
               </Grid>
             </Grid>
           </Form>
