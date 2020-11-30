@@ -1,9 +1,9 @@
-import Register, { PrivateRoute } from "./pages/Register";
+import Register from "./pages/Register";
 import { Route, Link, Redirect, Switch } from "react-router-dom";
 import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
 
 import Employees from "./pages/Employees/Employees";
-import Login from "./pages/Login";
+import Login, { PrivateRoute } from "./pages/Login";
 const theme = createMuiTheme({
   palette: {
     primary: {

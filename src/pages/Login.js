@@ -25,6 +25,18 @@ const initialFValues = {
   email: "",
   password: "",
 };
+
+const auth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true;
+    setTimeout(cb, 100);
+  },
+  signout(cb) {
+    this.isAuthenticated = false;
+    setTimeout(cb, 100);
+  },
+};
 function Login(props) {
   const classes = useStyles();
 
@@ -37,6 +49,7 @@ function Login(props) {
     e.preventDefault();
 
     if (validate()) {
+      auth.authenticate();
       props.history.push("/employees");
     }
   };
@@ -83,3 +96,16 @@ function Login(props) {
 }
 
 export default Login;
+
+export const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      auth.isAuthenticated === true ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/" />
+      )
+    }
+  />
+);

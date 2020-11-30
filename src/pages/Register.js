@@ -24,17 +24,6 @@ const initialFValues = {
   mobile: "",
   city: "",
 };
-const auth = {
-  isAuthenticated: true,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100);
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  },
-};
 function Register(props) {
   const classes = useStyles();
 
@@ -102,16 +91,3 @@ function Register(props) {
 }
 
 export default Register;
-
-export const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      auth.isAuthenticated === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/" />
-      )
-    }
-  />
-);
