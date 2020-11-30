@@ -37,7 +37,6 @@ function Header(props) {
   const classes = useStyles();
   const logout = (e) => {
     e.preventDefault();
-    console.log("bye");
     userService.auth.signout();
     props.history.push("/");
   };

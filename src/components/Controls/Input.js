@@ -3,7 +3,6 @@ import React from "react";
 
 function Input(props) {
   const { name, label, value, onChange, type, error = null } = props;
-
   return (
     <TextField
       variant="outlined"
