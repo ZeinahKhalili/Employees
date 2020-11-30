@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import Register, { PrivateRoute } from "./pages/Register";
+import { Route, Link, Redirect, Switch } from "react-router-dom";
+import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
+
+import Employees from "./pages/Employees/Employees";
+import Login from "./pages/Login";
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#333996",
+      light: "#3c44b126",
+    },
+    secondary: {
+      main: "#f83245",
+      light: "#f8324526",
+    },
+    background: {
+      default: "#f4f5fd",
+    },
+  },
+  overrides: {
+    MuiAppBar: {
+      root: { transform: "translateZ(0)" },
+    },
+  },
+  shape: {
+    borderRadius: "12px",
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route path="/signup" component={Register} />
+        <PrivateRoute path="/employees" component={Employees} />
+      </Switch>
+      <CssBaseline />
+    </ThemeProvider>
   );
 }
 
