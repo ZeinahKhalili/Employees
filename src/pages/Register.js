@@ -36,6 +36,7 @@ function Register(props) {
     e.preventDefault();
     if (validate()) {
       userService.insertUser(values);
+
       props.history.push("/");
     }
   };
