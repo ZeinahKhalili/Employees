@@ -4,6 +4,7 @@ import { Link, Redirect, Route, useHistory } from "react-router-dom";
 import Controls from "../components/Controls/Controls";
 import { Form, useForm } from "../components/useForm";
 import { withRouter } from "react-router-dom";
+import * as userService from "../services/userService";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -26,17 +27,6 @@ const initialFValues = {
   password: "",
 };
 
-const auth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100);
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  },
-};
 function Login(props) {
   const classes = useStyles();
 
@@ -49,8 +39,13 @@ function Login(props) {
     e.preventDefault();
 
     if (validate()) {
-      auth.authenticate();
-      props.history.push("/employees");
+      userService.auth.authenticate();
+
+      if (userService.getUser(values.email, values.password)) {
+        props.history.push("/employees");
+      } else {
+        alert("Wrong password or email, please try again");
+      }
     }
   };
   return (
@@ -64,6 +59,7 @@ function Login(props) {
                 <Controls.Input
                   label="Email"
                   name="email"
+                  type="text"
                   value={values.email}
                   onChange={handleInputChange}
                   error={errors.email}
@@ -71,6 +67,7 @@ function Login(props) {
                 <Controls.Input
                   label="Password"
                   name="password"
+                  type="password"
                   value={values.password}
                   onChange={handleInputChange}
                   error={errors.password}
@@ -101,7 +98,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      auth.isAuthenticated === true ? (
+      userService.auth.isAuthenticated === true ? (
         <Component {...props} />
       ) : (
         <Redirect to="/" />

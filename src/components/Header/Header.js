@@ -13,6 +13,8 @@ import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import ChatBubbleOutline from "@material-ui/icons/ChatBubbleOutline";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SearchIcon from "@material-ui/icons/Search";
+import * as userService from "../../services/userService";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +35,12 @@ const useStyles = makeStyles((theme) => ({
 
 function Header(props) {
   const classes = useStyles();
+  const logout = (e) => {
+    e.preventDefault();
+    console.log("bye");
+    userService.auth.signout();
+    props.history.push("/");
+  };
   return (
     <AppBar position="static" className={classes.root}>
       <Toolbar>
@@ -56,7 +64,7 @@ function Header(props) {
                 <ChatBubbleOutline fontSize="small" />
               </Badge>
             </IconButton>
-            <IconButton>
+            <IconButton onClick={logout}>
               <PowerSettingsNewIcon fontSize="small" />
             </IconButton>
           </Grid>

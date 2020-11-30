@@ -49,6 +49,7 @@ function Register(props) {
             <Grid item sm={6}>
               <Controls.Input
                 label="Full Name"
+                type="text"
                 name="fullName"
                 value={values.fullName}
                 onChange={handleInputChange}
@@ -57,6 +58,7 @@ function Register(props) {
               <Controls.Input
                 label="Email"
                 name="email"
+                type="text"
                 value={values.email}
                 onChange={handleInputChange}
                 error={errors.email}
@@ -64,18 +66,21 @@ function Register(props) {
               <Controls.Input
                 label="Mobile"
                 name="mobile"
+                type="text"
                 value={values.mobile}
                 onChange={handleInputChange}
                 error={errors.mobile}
               />
               <Controls.Input
                 label="City"
+                type="text"
                 name="city"
                 value={values.city}
                 onChange={handleInputChange}
               />
               <Controls.Input
                 label="Password"
+                type="password"
                 name="password"
                 value={values.password}
                 onChange={handleInputChange}

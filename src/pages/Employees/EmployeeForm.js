@@ -50,6 +50,7 @@ function EmployeeForm() {
           <Controls.Input
             label="Full Name"
             name="fullName"
+            type="text"
             value={values.fullName}
             onChange={handleInputChange}
             error={errors.fullName}
@@ -57,6 +58,7 @@ function EmployeeForm() {
           <Controls.Input
             label="Email"
             name="email"
+            type="text"
             value={values.email}
             onChange={handleInputChange}
             error={errors.email}
@@ -64,12 +66,14 @@ function EmployeeForm() {
           <Controls.Input
             label="Mobile"
             name="mobile"
+            type="text"
             value={values.mobile}
             onChange={handleInputChange}
             error={errors.mobile}
           />
           <Controls.Input
             label="City"
+            type="text"
             name="city"
             value={values.city}
             onChange={handleInputChange}
