@@ -87,7 +87,8 @@ export function Form(props) {
   const { children, ...other } = props;
 
   return (
-    <form className={classes.root} autoComplete="off" {...other}>
+    <form className={classes.root} {...other}>
+      {/* autoComplete="off"  */}
       {props.children}
     </form>
   );

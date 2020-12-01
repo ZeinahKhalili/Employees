@@ -3,9 +3,10 @@ import {
   Table,
   TableCell,
   TableHead,
+  TablePagination,
   TableRow,
 } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -25,8 +26,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function useTable(record, headCells) {
+function useTable(records, headCells, filterFn) {
   const classes = useStyles();
+  const pages = [5, 10, 25];
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowPerPage] = useState(pages[page]);
   const TblContainer = (props) => (
     <Table className={classes.table}>{props.children}</Table>
   );
@@ -39,7 +43,32 @@ function useTable(record, headCells) {
       </TableRow>
     </TableHead>
   );
-  return { TblContainer, TblHead };
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+  const handleChangeRowsPerPAge = (event) => {
+    setRowPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+  const TblPagination = () => (
+    <TablePagination
+      rowsPerPageOptions={pages}
+      page={page}
+      component="div"
+      count={records.length}
+      rowsPerPage={rowsPerPage}
+      onChangePage={handleChangePage}
+      onChangeRowsPerPage={handleChangeRowsPerPAge}
+    />
+  );
+
+  const recordsAfterPagingAndSorting = () => {
+    return filterFn
+      .fn(records)
+      .slice(page * rowsPerPage, (page + 1) * rowsPerPage);
+  };
+
+  return { TblContainer, TblHead, TblPagination, recordsAfterPagingAndSorting };
 }
 
 export default useTable;

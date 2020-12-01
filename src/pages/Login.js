@@ -2,6 +2,7 @@ import { Grid, makeStyles, Paper } from "@material-ui/core";
 import React, { useState } from "react";
 import { Link, Redirect, Route, useHistory } from "react-router-dom";
 import Controls from "../components/Controls/Controls";
+import Notification from "../components/Notification";
 import { Form, useForm } from "../components/useForm";
 import * as userService from "../services/userService";
 
@@ -34,7 +35,11 @@ const initialFValues = {
 function Login(props) {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
-
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
   const { values, handleInputChange, errors, validate } = useForm(
     initialFValues,
     true
@@ -48,10 +53,18 @@ function Login(props) {
       if (userService.getUser(values.email, values.password)) {
         props.history.push("/employees");
       } else {
-        alert("Wrong password or email, please try again");
+        setNotify({
+          isOpen: true,
+          message: "Wrong password or email, please try again",
+          type: "error",
+        });
       }
     } else {
-      alert("Wrong password or email, please try again");
+      setNotify({
+        isOpen: true,
+        message: "Wrong password or email, please try again",
+        type: "error",
+      });
     }
   };
   const handlePassword = () => {
@@ -103,6 +116,7 @@ function Login(props) {
           </Form>
         </div>
       </Paper>
+      <Notification notify={notify} setNotify={setNotify} />
     </>
   );
 }

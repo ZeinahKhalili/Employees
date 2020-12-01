@@ -1,6 +1,6 @@
 import { Checkbox, FormControlLabel, FormGroup, Grid } from "@material-ui/core";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Controls from "../../components/Controls/Controls";
 import { useForm, Form } from "../../components/useForm";
 import * as employeeService from "../../services/employeeService";
@@ -31,18 +31,28 @@ const initialFValues = {
   isPermenant: false,
 };
 
-function EmployeeForm() {
-  const { values, handleInputChange, errors, resetForm, validate } = useForm(
-    initialFValues,
-    true
-  );
+function EmployeeForm(props) {
+  const {
+    values,
+    setValues,
+    handleInputChange,
+    errors,
+    resetForm,
+    validate,
+  } = useForm(initialFValues, true);
+  const { addOrEdit, recordForEdit } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      employeeService.insertEmployee(values);
+      addOrEdit(values, resetForm);
     }
   };
+  useEffect(() => {
+    if (recordForEdit != null) {
+      setValues({ ...recordForEdit });
+    }
+  }, [recordForEdit]);
   return (
     <Form onSubmit={handleSubmit}>
       <Grid container>

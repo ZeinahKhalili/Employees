@@ -10,6 +10,7 @@ function Input(props) {
     type,
     visibility,
     error = null,
+    ...other
   } = props;
   return (
     <TextField
@@ -19,6 +20,7 @@ function Input(props) {
       type={visibility ? "text" : "password"}
       value={value}
       onChange={onChange}
+      {...other}
       {...(error && { error: true, helperText: error })}
     />
   );
