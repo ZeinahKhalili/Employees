@@ -51,6 +51,7 @@ function EmployeeForm() {
             label="Full Name"
             name="fullName"
             type="text"
+            visibility="true"
             value={values.fullName}
             onChange={handleInputChange}
             error={errors.fullName}
@@ -60,6 +61,7 @@ function EmployeeForm() {
             name="email"
             type="text"
             value={values.email}
+            visibility="true"
             onChange={handleInputChange}
             error={errors.email}
           />
@@ -68,6 +70,7 @@ function EmployeeForm() {
             name="mobile"
             type="text"
             value={values.mobile}
+            visibility="true"
             onChange={handleInputChange}
             error={errors.mobile}
           />
@@ -76,6 +79,7 @@ function EmployeeForm() {
             type="text"
             name="city"
             value={values.city}
+            visibility="true"
             onChange={handleInputChange}
           />
         </Grid>
@@ -106,6 +110,7 @@ function EmployeeForm() {
             onChange={handleInputChange}
             value={values.isPermenant}
             label="Permenant Employee"
+            iconName="permenant"
           />
           <div>
             <Controls.Button text="Submit" type="submit" />

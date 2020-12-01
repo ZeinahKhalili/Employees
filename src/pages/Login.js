@@ -1,5 +1,5 @@
 import { Grid, makeStyles, Paper } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import { Link, Redirect, Route, useHistory } from "react-router-dom";
 import Controls from "../components/Controls/Controls";
 import { Form, useForm } from "../components/useForm";
@@ -29,6 +29,7 @@ const initialFValues = {
 
 function Login(props) {
   const classes = useStyles();
+  const [showPassword, setShowPassword] = useState(false);
 
   const { values, handleInputChange, errors, validate } = useForm(
     initialFValues,
@@ -40,13 +41,15 @@ function Login(props) {
 
     if (validate()) {
       userService.auth.authenticate();
-
       if (userService.getUser(values.email, values.password)) {
         props.history.push("/employees");
-      } else {
-        alert("Wrong password or email, please try again");
       }
+    } else {
+      alert("Wrong password or email, please try again");
     }
+  };
+  const handlePassword = () => {
+    setShowPassword(!showPassword);
   };
   return (
     <>
@@ -60,6 +63,7 @@ function Login(props) {
                   label="Email"
                   name="email"
                   type="text"
+                  visibility="true"
                   value={values.email}
                   onChange={handleInputChange}
                   error={errors.email}
@@ -68,9 +72,16 @@ function Login(props) {
                   label="Password"
                   name="password"
                   type="password"
+                  visibility={showPassword}
                   value={values.password}
                   onChange={handleInputChange}
-                  error={errors.password}
+                />
+                <Controls.Checkbox
+                  name="showPassword"
+                  onChange={handlePassword}
+                  value={showPassword}
+                  label="show password"
+                  iconName="eye"
                 />
               </Grid>
 

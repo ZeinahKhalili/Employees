@@ -7,20 +7,33 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
-
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 const useStyles = makeStyles((theme) => ({
   root: { marginLeft: theme.spacing(1) },
 }));
 function Checkbox(props) {
-  const { name, label, onChange, value } = props;
+  const { name, label, onChange, value, iconName } = props;
   const classes = useStyles();
   return (
     <FormGroup>
       <FormControlLabel
         control={
           <MuiCheckbox
-            icon={<AllInclusiveIcon />}
-            checkedIcon={<AllInclusiveIcon />}
+            icon={
+              iconName == "permenant" ? (
+                <AllInclusiveIcon />
+              ) : (
+                <VisibilityOffIcon />
+              )
+            }
+            checkedIcon={
+              iconName == "permenant" ? (
+                <AllInclusiveIcon />
+              ) : (
+                <VisibilityIcon />
+              )
+            }
             name={name}
             value={value}
             onChange={onChange}

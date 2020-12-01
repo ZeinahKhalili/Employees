@@ -4,6 +4,7 @@ import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
 
 import Employees from "./pages/Employees/Employees";
 import Login, { PrivateRoute } from "./pages/Login";
+import Home from "./pages/Home";
 const theme = createMuiTheme({
   palette: {
     primary: {

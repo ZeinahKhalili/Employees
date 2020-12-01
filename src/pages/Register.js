@@ -26,6 +26,7 @@ const initialFValues = {
 };
 function Register(props) {
   const classes = useStyles();
+  const [showPassword, setShowPassword] = useState(false);
 
   const { values, handleInputChange, errors, validate } = useForm(
     initialFValues,
@@ -40,6 +41,9 @@ function Register(props) {
       props.history.push("/");
     }
   };
+  const handlePassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -52,6 +56,7 @@ function Register(props) {
                 label="Full Name"
                 type="text"
                 name="fullName"
+                visibility="true"
                 value={values.fullName}
                 onChange={handleInputChange}
                 error={errors.fullName}
@@ -61,11 +66,13 @@ function Register(props) {
                 name="email"
                 type="text"
                 value={values.email}
+                visibility="true"
                 onChange={handleInputChange}
                 error={errors.email}
               />
               <Controls.Input
                 label="Mobile"
+                visibility="true"
                 name="mobile"
                 type="text"
                 value={values.mobile}
@@ -74,6 +81,7 @@ function Register(props) {
               />
               <Controls.Input
                 label="City"
+                visibility="true"
                 type="text"
                 name="city"
                 value={values.city}
@@ -82,11 +90,20 @@ function Register(props) {
               <Controls.Input
                 label="Password"
                 type="password"
+                visibility={showPassword}
                 name="password"
                 value={values.password}
                 onChange={handleInputChange}
                 error={errors.password}
               />
+              <Controls.Checkbox
+                name="showPassword"
+                onChange={handlePassword}
+                value={showPassword}
+                label="show password"
+                iconName="eye"
+              />
+
               <Controls.Button text="Register" type="submit" />
             </Grid>
           </Grid>

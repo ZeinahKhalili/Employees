@@ -18,11 +18,17 @@ export function useForm(initialFValues, validateOnChange = false) {
     }
     if ("password" in fieldValues) {
       temp.password =
-        /$^|(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(
-          fieldValues.password
-        ) && fieldValues.password
-          ? ""
-          : "Password is not valid";
+        /$^|(?=.*[a-z])/.test(fieldValues.password) && fieldValues.password
+          ? /$^|(?=.*[A-Z])/.test(fieldValues.password)
+            ? /$^|(?=.*[0-9])/.test(fieldValues.password)
+              ? /$^|(?=.*[!@#\$%\^&\*])/.test(fieldValues.password)
+                ? /$^|(?=.{8,})/.test(fieldValues.password)
+                  ? ""
+                  : "password must be more than 8 characters"
+                : "password must contain symbols"
+              : "password must contain numbers"
+            : "password must contain capital letters"
+          : "Password must contain: small letters, capital letters, symbols and numbers";
     }
     if ("mobile" in fieldValues) {
       temp.mobile =
