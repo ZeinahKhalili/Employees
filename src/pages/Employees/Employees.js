@@ -137,6 +137,7 @@ function Employees(props) {
         <PageHeader
           title="New Employee"
           icon={<PeopleOutlineTwoTone fontSize="large" />}
+          subtitle="Add new employee"
         />
         <Paper className={classes.pageContent}>
           <Toolbar>
