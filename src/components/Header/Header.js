@@ -6,14 +6,12 @@ import {
   InputBase,
   makeStyles,
   Toolbar,
-  withStyles,
 } from "@material-ui/core";
 import React from "react";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import ChatBubbleOutline from "@material-ui/icons/ChatBubbleOutline";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import SearchIcon from "@material-ui/icons/Search";
-import * as userService from "../../services/userService";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,9 +33,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Header(props) {
   const classes = useStyles();
-  const logout = (e) => {
+  const back = (e) => {
     e.preventDefault();
-    userService.auth.signout();
     props.history.push("/");
   };
   return (
@@ -63,7 +60,7 @@ function Header(props) {
                 <ChatBubbleOutline fontSize="small" />
               </Badge>
             </IconButton>
-            <IconButton onClick={logout}>
+            <IconButton onClick={back}>
               <PowerSettingsNewIcon fontSize="small" />
             </IconButton>
           </Grid>
@@ -73,4 +70,4 @@ function Header(props) {
   );
 }
 
-export default Header;
+export default withRouter(Header);

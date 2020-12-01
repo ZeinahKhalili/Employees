@@ -62,7 +62,7 @@ function Login(props) {
           <h1>Login</h1>
           <Form onSubmit={handleSubmit}>
             <Grid container>
-              <Grid item md={12}>
+              <Grid item lg={12}>
                 <Controls.Input
                   label="Email"
                   name="email"
@@ -86,7 +86,7 @@ function Login(props) {
                 />
               </Grid>
 
-              <Grid item md={6}>
+              <Grid item lg={6}>
                 <Controls.Button text="Log in" type="submit" />
                 <br />
                 <span className={classes.link}>

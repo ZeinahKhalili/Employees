@@ -16,7 +16,7 @@ export function generateUserId() {
   if (localStorage.getItem(KEYS.userId) == null)
     localStorage.setItem(KEYS.userId, "0");
   var id = parseInt(localStorage.getItem(KEYS.userId));
-  localStorage.setItem(KEYS.users, (++id).toString());
+  localStorage.setItem(KEYS.userId, (++id).toString());
   return id;
 }
 
@@ -44,6 +44,7 @@ export function getUser(email, password) {
 }
 export function checkEmail(email) {
   let users = getAllUsers();
+  users = users || [];
   let usersEmail = [];
   for (let i = 0; i < users.length; i++) {
     usersEmail.push(users[i].email);
