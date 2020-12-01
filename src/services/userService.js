@@ -42,7 +42,20 @@ export function getUser(email, password) {
     }
   }
 }
-
+export function checkEmail(email) {
+  let users = getAllUsers();
+  let usersEmail = [];
+  for (let i = 0; i < users.length; i++) {
+    usersEmail.push(users[i].email);
+  }
+  for (let j = 0; j < users.length; j++) {
+    if (email === usersEmail[j]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
 export const auth = {
   isAuthenticated: false,
   authenticate(cb) {

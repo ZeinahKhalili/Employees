@@ -16,7 +16,7 @@ function Checkbox(props) {
   const { name, label, onChange, value, iconName } = props;
   const classes = useStyles();
   return (
-    <FormGroup>
+    <FormControl>
       <FormControlLabel
         control={
           <MuiCheckbox
@@ -42,7 +42,7 @@ function Checkbox(props) {
         }
         label={label}
       />
-    </FormGroup>
+    </FormControl>
   );
 }
 

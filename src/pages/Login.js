@@ -12,7 +12,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   paper: {
-    margin: theme.spacing(3),
+    margin: theme.spacing(10),
+    marginLeft: theme.spacing(40),
+    marginRight: theme.spacing(40),
   },
   link: {
     textDecoration: "none",
@@ -43,6 +45,8 @@ function Login(props) {
       userService.auth.authenticate();
       if (userService.getUser(values.email, values.password)) {
         props.history.push("/employees");
+      } else {
+        alert("Wrong password or email, please try again");
       }
     } else {
       alert("Wrong password or email, please try again");
@@ -58,11 +62,10 @@ function Login(props) {
           <h1>Login</h1>
           <Form onSubmit={handleSubmit}>
             <Grid container>
-              <Grid item md={6}>
+              <Grid item md={12}>
                 <Controls.Input
                   label="Email"
                   name="email"
-                  type="text"
                   visibility="true"
                   value={values.email}
                   onChange={handleInputChange}
@@ -71,7 +74,6 @@ function Login(props) {
                 <Controls.Input
                   label="Password"
                   name="password"
-                  type="password"
                   visibility={showPassword}
                   value={values.password}
                   onChange={handleInputChange}
@@ -79,7 +81,6 @@ function Login(props) {
                 <Controls.Checkbox
                   name="showPassword"
                   onChange={handlePassword}
-                  value={showPassword}
                   label="show password"
                   iconName="eye"
                 />

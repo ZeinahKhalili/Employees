@@ -50,7 +50,6 @@ function EmployeeForm() {
           <Controls.Input
             label="Full Name"
             name="fullName"
-            type="text"
             visibility="true"
             value={values.fullName}
             onChange={handleInputChange}
@@ -59,7 +58,6 @@ function EmployeeForm() {
           <Controls.Input
             label="Email"
             name="email"
-            type="text"
             value={values.email}
             visibility="true"
             onChange={handleInputChange}
@@ -68,7 +66,6 @@ function EmployeeForm() {
           <Controls.Input
             label="Mobile"
             name="mobile"
-            type="text"
             value={values.mobile}
             visibility="true"
             onChange={handleInputChange}
@@ -76,7 +73,6 @@ function EmployeeForm() {
           />
           <Controls.Input
             label="City"
-            type="text"
             name="city"
             value={values.city}
             visibility="true"

@@ -34,6 +34,12 @@ export function useForm(initialFValues, validateOnChange = false) {
       temp.mobile =
         fieldValues.mobile.length > 9 ? "" : "Minimum 10 digits required";
     }
+    if ("checkPassword" in fieldValues) {
+      temp.checkPassword =
+        fieldValues.password != fieldValues.checkPassword
+          ? "passwords not match"
+          : "";
+    }
     setErrors({ ...temp });
     if (fieldValues == values) return Object.values(temp).every((x) => x == "");
   };
