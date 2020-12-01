@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.spacing(2.5),
     marginTop: theme.spacing(1.5),
   },
+  showPass: {
+    marginTop: theme.spacing(10),
+  },
 }));
 
 const initialFValues = {
@@ -61,7 +64,7 @@ function Login(props) {
           <h1>Login</h1>
           <Form onSubmit={handleSubmit}>
             <Grid container>
-              <Grid item lg={12}>
+              <Grid item md={6}>
                 <Controls.Input
                   label="Email"
                   name="email"
@@ -77,6 +80,8 @@ function Login(props) {
                   value={values.password}
                   onChange={handleInputChange}
                 />
+              </Grid>
+              <Grid item md={4} className={classes.showPass}>
                 <Controls.Checkbox
                   name="showPassword"
                   onChange={handlePassword}
@@ -84,8 +89,7 @@ function Login(props) {
                   iconName="eye"
                 />
               </Grid>
-
-              <Grid item lg={6}>
+              <Grid item md={6}>
                 <Controls.Button text="Log in" type="submit" />
                 <br />
                 <span className={classes.link}>

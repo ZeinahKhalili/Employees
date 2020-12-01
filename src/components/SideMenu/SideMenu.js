@@ -8,7 +8,7 @@ const styles = {
     position: "absolute",
     left: "0",
     width: "250px",
-    height: "100%",
+    height: "1200px",
     backgroundColor: "#253053",
   },
 };
