@@ -1,10 +1,11 @@
 import Register from "./pages/Register";
-import { Route, Link, Redirect, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
 
 import Employees from "./pages/Employees/Employees";
-import Login, { PrivateRoute } from "./pages/Login";
-import Home from "./pages/Home";
+import Login from "./pages/Login";
+import * as userService from "./services/userService";
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -28,6 +29,19 @@ const theme = createMuiTheme({
     borderRadius: "12px",
   },
 });
+
+export const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      userService.auth.isAuthenticated === true ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/" />
+      )
+    }
+  />
+);
 
 function App() {
   return (

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Link, Redirect, Route, useHistory } from "react-router-dom";
 import Controls from "../components/Controls/Controls";
 import { Form, useForm } from "../components/useForm";
-import { withRouter } from "react-router-dom";
 import * as userService from "../services/userService";
 
 const useStyles = makeStyles((theme) => ({
@@ -105,16 +104,3 @@ function Login(props) {
 }
 
 export default Login;
-
-export const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      userService.auth.isAuthenticated === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/" />
-      )
-    }
-  />
-);
